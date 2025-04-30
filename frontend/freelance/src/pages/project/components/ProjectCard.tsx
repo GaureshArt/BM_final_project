@@ -50,10 +50,10 @@ const ProjectCard: React.FC<Props> = ({ project, userRole, onBid ,bidProj}) => {
       </div>
 
       {userRole === 'freelancer' && (
-        bidProj.find((pro)=>pro.id === project.id) ? <Button variant='text' color='volcano'>
-            Already Bid
-        </Button>:
-        project.assignedFreelancer ?<Button variant='solid' color='purple'>Closed Assigned</Button>:
+        
+        project.assignedFreelancer ?<Button variant='solid' color='purple'>Closed Assigned</Button>:bidProj.find((pro)=>pro.id === project.id) ? <Button variant='text' color='volcano'>
+        Already Bid
+    </Button>:
         <Button variant='solid' color='default' onClick={()=>onBid?.(project.id)}>
           Bid on Project
         </Button>
