@@ -8,6 +8,7 @@ import { ProfileCard } from "./components/ProfileCard";
 export const Dashboard = () => {
   const nav = useNavigate();
   const userId = useParams().userId;
+  const role = sessionStorage.getItem('userRole');
   const handleGetUserData = async () => {
     const res = await getuserById(+userId!);
     return res;
@@ -58,13 +59,16 @@ export const Dashboard = () => {
           </Splitter.Panel>
           <Splitter.Panel>
             <div className="flex items-center justify-center m-10">
+                {
+                    role === 'freelancer'?<h1>Project Analysis Coming soon..</h1>:
               <Button
-                variant="filled"
-                color="purple"
-                onClick={handleAddProject}
+              variant="filled"
+              color="purple"
+              onClick={handleAddProject}
               >
                 Add Project
               </Button>
+            }
             </div>
           </Splitter.Panel>
         </Splitter>

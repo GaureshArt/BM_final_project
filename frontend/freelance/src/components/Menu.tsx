@@ -31,7 +31,7 @@ tab:string
 const MenuCom: React.FC<MenuProp> = ({tab}) => {
   const [collapsed, setCollapsed] = useState(false);
   const nav = useNavigate();
-  const userId  = useAuthStore((state)=>state.userId);
+  const userId = +sessionStorage.getItem('userId')!;
   const toggleCollapsed = () => {
     setCollapsed(!collapsed);
   };
@@ -44,6 +44,9 @@ const MenuCom: React.FC<MenuProp> = ({tab}) => {
   const handleProjectsClick = () => {
     nav(`/myprojects/${userId}`)
   };
+  const handleDashboardClick = ()=>{
+    nav(`/dashboard/id/${userId}`)
+  }
   const handleMenuClick: MenuProps["onClick"] = (e) => {
     if (e.key === "1") {
       handleHomeClick();
@@ -51,6 +54,8 @@ const MenuCom: React.FC<MenuProp> = ({tab}) => {
       handleNotificationsClick();
     } else if (e.key === "3") {
       handleProjectsClick();
+    }else{
+      handleDashboardClick();
     }
   };
   return (
